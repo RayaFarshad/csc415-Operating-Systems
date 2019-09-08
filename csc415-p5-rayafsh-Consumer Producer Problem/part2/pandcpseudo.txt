@@ -1,0 +1,50 @@
+pseudo goes here
+
+The basic concept of the bounded buffer problem is a classical problem of synchronization.
+the problem is that we have n buffers in global (shared memory) that each can hold one item
+and we also have p producer threads and c consumer threads.
+each producer thread should enqueue X different numbers into the queue.
+sleep for ptime seconds in between each call to enqueue.
+each consumer thread should dequeue p*x/c items from the queue
+//global Variables
+count = 0;
+consumerIndex ;
+producerIndec ;
+buffer_array[];
+int buffersize;
+//defining semaphores
+mutex = 1;
+full = 0;
+empty = bufferSize;
+//
+//Producer process:
+producer(){
+while(/* can still produce*/){
+//produced an item in next produced;
+wait(empty);
+wait(mutex);
+//Critical Section start:
+//add next produced to the buffer
+//critical section end
+
+signal(mutex);
+signal(full);
+sleep(ptime);vv
+}
+}
+//Consumer process
+consumer(){
+while(/*can still consume/*){
+wait(full);
+wait(mutex);
+//Critical sextion start:
+//remove an item from buffer to next consumed
+//critical section end
+
+signal(mutex);
+signal(empty);
+sleep(ctime);
+//consume the item in next consumed
+
+}
+}
